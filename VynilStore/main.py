@@ -8,9 +8,10 @@ app = Flask(__name__)
 with open(app.root_path + '/config.cfg', 'r') as f:
     app.config['ORACLE_URI'] = f.readline()
 
-username = "bd103"
-password = "bd103"
-dsn = "bd-dc.cs.tuiasi.ro:1539/orcl"
+#
+username = ""
+password = ""
+dsn = ""
 
 # Establish a connection
 con = cx_Oracle.connect(user=username, password=password, dsn=dsn)
@@ -35,7 +36,8 @@ def emp():
 	cur.close()
 	print(vinil_generic)
 	return render_template('vinil_generic.html', vinil_generic=vinil_generic)
-	#------------------
+
+
 @app.route('/addVinilGeneric', methods=['GET', 'POST'])
 def add_vg():
 	error = None
@@ -110,7 +112,7 @@ def get_vinilgen():
 	titlu_album=titlu_album, artist=artist, gen_muzical=gen_muzical, an_lansare=an_lansare)
 
 
-#-----------------------------------------#
+
 #vinil_fizic begin code
 @app.route('/vinil_fizic')
 def vinfiz():
@@ -157,7 +159,8 @@ def vinfiz():
 	cur.close()
 
 	return render_template('vinil_fizic.html', counselors=counselors, vinil_fizic=com, furnizor=com1, promotie=com2)
-	#------------------
+	
+	
 @app.route('/addVinilFizic', methods=['GET', 'POST'])
 def add_vf():
 	error = None
@@ -189,6 +192,7 @@ def add_vf():
 		cur.execute('commit')
 		return redirect('/vinil_fizic')
 
+
 @app.route('/delVinilFizic', methods=['POST'])
 def del_vinfiz():
 	vini = request.form['id_vinil']
@@ -198,7 +202,6 @@ def del_vinfiz():
 	return redirect('/vinil_fizic')
 	
 
-#-----------------------------------------#
 #promotie start code
 @app.route('/promotie')
 def prom():
@@ -254,8 +257,8 @@ def del_promo():
 	cur.execute('delete from promotie where id_promotie=' + pr)
 	cur.execute('commit')
 	return redirect('/promotie')
-#promotie end code
-#------------------------------------------#
+
+
 #pozitionare start code
 @app.route('/pozitionare')
 def poz():
@@ -280,7 +283,7 @@ def poz():
 	cur.close()
 	#print(com)
 	return render_template('pozitionare.html', counselors=counselors, pozitonare=com)
-	#------------------
+	
 @app.route('/addPozitionare', methods=['GET', 'POST'])
 def add_poz():
 	error = None
@@ -307,8 +310,6 @@ def del_poz():
 	return redirect('/pozitionare')
 	
 
-#---------------------------------------------------------#
-
 #incasari start code
 @app.route('/incasari')
 def incas():
@@ -334,7 +335,8 @@ def incas():
 	cur.close()
 	#print(com)
 	return render_template('incasari.html', counselors=counselors, incasari=com)
-	#------------------
+	
+
 @app.route('/addIncasari', methods=['GET', 'POST'])
 def add_incas():
 	error = None
@@ -361,8 +363,6 @@ def add_incas():
 
 		cur.execute(query)
 		cur.execute('commit')
-		
-		#------------------
 
 		cur=con.cursor()
 		emp = 0
@@ -380,14 +380,10 @@ def add_incas():
 		cur = con.cursor()
 		update_query = "UPDATE vinil_fizic SET stoc = stoc-1 WHERE id_vinil =:emp1"
 		cur.execute(update_query, {'emp1': emp1})
-    		#cur.execute(update_query, {'emp1': emp1})
 		con.commit()
 		cur.close()
-
-              #________________________
-
-
 		return redirect('/incasari')
+
 
 @app.route('/delIncasari', methods=['POST'])
 def del_incas():
@@ -403,8 +399,6 @@ def del_incas():
 	cur = con.cursor()
 	cur.execute('delete from incasari where id_incasari=' + vini)
 	cur.execute('commit')
-
-	
 	cur = con.cursor()
 	update_query = "UPDATE vinil_fizic SET stoc = stoc+1 WHERE id_vinil =:emp1"
 	cur.execute(update_query, {'emp1': emp1})
@@ -412,7 +406,7 @@ def del_incas():
 	cur.close()
 	return redirect('/incasari')
 
-#-----------------------------------------------------------------------------#
+
 #furnizor begin code
 @app.route('/')
 @app.route('/furnizor')
@@ -431,7 +425,8 @@ def fur():
 	cur.close()
 	#print(vinil_generic)
 	return render_template('furnizor.html', furnizor=furnizor)
-	#------------------
+	
+	
 @app.route('/addFurnizor', methods=['GET', 'POST'])
 def add_fur():
 	error = None
