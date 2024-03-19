@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0111)file:///C:/Users/Iuliana/Downloads/model%20tema%20de%20casa/model%20tema%20de%20casa/templates/HTMLPage1.html -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./vinil_fizic_files/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="./vinil_fizic_files/jquery-3.1.1.slim.min.js.download" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="./vinil_fizic_files/tether.min.js.download" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="./vinil_fizic_files/bootstrap.min.js.download" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+        body {
+            background-color: #f5e1e1;
+            color: #454545;
+            font-family: 'Indie Flower', cursive !important;
+            margin: 0;
+        }
+
+        .tablink {
+            font-weight: bold;
+            font-family: 'Indie Flower', cursive !important;
+            background-color: #ffb6c1;
+            color: #fff;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 12px 12px;
+            font-size: 14px; /* Adjusted font size */
+            width: 16.66%; /* 6 tabs in one row */
+        }
+
+            .tablink:hover {
+                background-color: #ff94a1;
+            }
+
+        table {
+            width: 90%; /* Adjusted width */
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px; /* Adjusted padding */
+            border: 1px solid #ff94a1;
+        }
+
+        th {
+            background-color: #ff6b81;
+            color: #fff;
+        }
+
+        td {
+            background-color: #ffb6c1;
+        }
+
+        .tabcontent {
+            color: #454545;
+            padding: 20px;
+        }
+
+        .btn-primary {
+            background-color: #ff6b81;
+            border-color: #ff6b81;
+        }
+
+            .btn-primary:hover {
+                background-color: #ff4757;
+                border-color: #ff4757;
+            }
+
+        .form-control {
+            background-color: #ffb6c1;
+            color: #454545;
+        }
+
+        h1 {
+            color: #ff6b81;
+        }
+
+        form {
+            margin-top: 20px;
+            width: 80%; /* Adjusted width */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #Consilieri {
+            background-color: #f5e1e1;
+        }
+
+        #Partide {
+            background-color: rgb(22,22,22);
+        }
+
+        #Comisii {
+            background-color: rgb(22,22,22);
+        }
+
+        #Pontaje {
+            background-color: rgb(22,22,22);
+        }
+    </style>
+</head>
+<body>
+
+    <a href="vinil_generic"><button class="tablink">Vinil_generic</button></a>
+    <a href="vinil_fizic"><button class="tablink">Vinil_fizic</button></a>
+    <a href="promotie"><button class="tablink">Promotie</button></a>
+    <a href="pozitionare"><button class="tablink">Pozitionare</button></a>
+    <a href="incasari"><button class="tablink">Incasari</button></a>
+    <a href="furnizor"><button class="tablink">Furnizor</button></a>
+    <div id="Consilieri" class="tabcontent">
+        <center>
+            <br>
+            <h1 id="h3">Editeaza Vinil Generic</h1>
+            <br><br><br>
+                    <form class="was-validated" method="POST" action="/editVinilGeneric">
+                        <div class="row">
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="validationServer01">Titlu_album</label>
+                                <input name="titlu_album" type="text" class="form-control is-valid" id="validationServer01" value="{{titlu_album}}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="validationServer01">Artist</label>
+                                <input name="artist" type="text" class="form-control is-valid" id="validationServer01" value="{{artsit}}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="validationServer01">Gen muzical</label>
+                                <input name="gen_muzical" type="text" class="form-control is-valid" id="validationServer01" value="{{gen_muzical}}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="validationServer01">An_Lansare</label>
+                                <input name="an_lansare" type="number" class="form-control is-valid" id="validationServer01" value="{{an_lansare}}" required>
+                            </div>
+             
+                        </div>
+                        <button class="btn btn-primary" type="submit">Editeaza Vinil Generic</button>
+                    </form>
+
+        </center>
+        </script>
+
+</body>
+</html> 

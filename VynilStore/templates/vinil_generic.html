@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+        body {
+            background-color: #f5e1e1;
+            color: #454545;
+            font-family: 'Indie Flower', cursive !important;
+            margin: 0;
+        }
+
+        .tablink {
+            font-weight: bold;
+            font-family: 'Indie Flower', cursive !important;
+            background-color: #ffb6c1;
+            color: #fff;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 12px 12px;
+            font-size: 17px;
+            width: 16.66%; /* 6 tabs in one row */
+        }
+
+            .tablink:hover {
+                background-color: #ff94a1;
+            }
+
+        table {
+            width: 90%; /* Adjusted width */
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px; /* Adjusted padding */
+            border: 1px solid #ff94a1;
+        }
+
+        th {
+            background-color: #ff6b81;
+            color: #fff;
+        }
+
+        td {
+            background-color: #ffb6c1;
+        }
+
+        .tabcontent {
+            color: #454545;
+            padding: 20px;
+        }
+
+        .btn-primary {
+            background-color: #ff6b81;
+            border-color: #ff6b81;
+        }
+
+            .btn-primary:hover {
+                background-color: #ff4757;
+                border-color: #ff4757;
+            }
+
+        .form-control {
+            background-color: #ffb6c1;
+            color: #454545;
+        }
+
+        h1 {
+            color: #ff6b81;
+        }
+
+        form {
+            margin-top: 20px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #Consilieri {
+            background-color: #f5e1e1;
+        }
+
+        #Partide {
+            background-color: rgb(22,22,22);
+        }
+
+        #Comisii {
+            background-color: rgb(22,22,22);
+        }
+
+        #Pontaje {
+            background-color: rgb(22,22,22);
+        }
+    </style>
+</head>
+<body>
+
+    <a href="vinil_generic"><button class="tablink" style="background: #ff4757; color: white">Vinil_generic</button></a>
+    <a href="vinil_fizic"><button class="tablink">Vinil_fizic</button></a>
+    <a href="promotie"><button class="tablink">Promotie</button></a>
+    <a href="pozitionare"><button class="tablink">Pozitionare</button></a>
+    <a href="incasari"><button class="tablink">Incasari</button></a>
+    <a href="furnizor"><button class="tablink">Furnizor</button></a>
+
+    <div id="Consilieri" class="tabcontent">
+        <center>
+            <br>
+            <h1 id="h3">Vinil_generic</h1>
+            <br>
+            <table style="width:70%">
+                <br>
+                <br>
+                <tr>
+                    <th><i><b>ID_vinilgeneric</b></i> </th>
+                    <th><i><b>Titlu_Album</b></i></th>
+                    <th><i><b>Artist</b></i></th>
+                    <th><i><b>Gen_Muzical</b></i></th>
+                    <th><i><b>An_Lansare</b></i></th>
+                    <th><i><b>Action</b></i></th>
+                </tr>
+                {% for vinil_generic in vinil_generic %}
+                <tr>
+                    <td>{{vinil_generic["id_vinilgeneric"]}}</td>
+                    <td>{{vinil_generic["titlu_album"]}}</td>
+                    <td>{{vinil_generic["artist"]}}</td>
+                    <td>{{vinil_generic["gen_muzical"]}}</td>
+                    <td>{{vinil_generic["an_lansare"]}}</td>
+                    <td>
+                        <form class="was-validated" method="POST" action="/delVinilGeneric">
+                            <button type="submit" name="id_vinilgeneric" value="{{vinil_generic['id_vinilgeneric']}}" class="btn btn-primary">Sterge</button>
+                        </form>
+                        <form class="was-validated" method="POST" action="/getVinilGeneric">
+                            <button type="submit" name="id_vinilgeneric" value="{{vinil_generic['id_vinilgeneric']}}" class="btn btn-primary">Editeaza</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </center>
+
+        <div id="VinilGeneric" class="tabcontent">
+            <center>
+                <h1>Adauga Vinil Generic</h1>
+                <form class="was-validated" method="POST" action="/addVinilGeneric">
+                   
+                        <div class="col-md-4 mb-3">
+                            <label for="validationServer01">Titlu_Album</label>
+                            <input name="titlu_album" type="text" class="form-control is-valid" id="validationServer01" placeholder="ex. Best of the Best" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationServer02">Artist</label>
+                            <input name="artist" type="text" class="form-control is-valid" id="validationServer02" placeholder="ex. John Doe" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationServer03">Gen_Muzical</label>
+                            <input name="gen_muzical" type="text" class="form-control is-valid" id="validationServer03" placeholder="ex. Rock" required>
+                        </div>
+                        
+                         
+                          <div class="col-md-4 mb-3">
+                            <label for="validationServer04">An_Lansare</label>
+                            <input name="an_lansare" type="number" class="form-control is-valid" id="validationServer04" placeholder="ex. 2000">
+                        </div>
+                    
+                    <button class="btn btn-primary" type="submit">Adauga Vinil Generic</button>
+                </form>
+            </center>
+        </div>
+    </div>
+</body>
+</html>

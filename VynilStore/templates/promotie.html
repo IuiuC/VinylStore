@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)file:///C:/Users/Iuliana/Downloads/model%20tema%20de%20casa/model%20tema%20de%20casa/templates/promotie.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./promotie_files/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="./promotie_files/jquery-3.1.1.slim.min.js.download" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="./promotie_files/tether.min.js.download" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="./promotie_files/bootstrap.min.js.download" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+        body {
+            background-color: #f5e1e1;
+            color: #454545;
+            font-family: 'Indie Flower', cursive !important;
+            margin: 0;
+        }
+
+        .tablink {
+            font-weight: bold;
+            font-family: 'Indie Flower', cursive !important;
+            background-color: #ffb6c1;
+            color: #fff;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 12px 12px;
+            font-size: 14px; /* Adjusted font size */
+            width: 16.66%; /* 6 tabs in one row */
+        }
+
+            .tablink:hover {
+                background-color: #ff94a1;
+            }
+
+        table {
+            width: 90%; /* Adjusted width */
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px; /* Adjusted padding */
+            border: 1px solid #ff94a1;
+        }
+
+        th {
+            background-color: #ff6b81;
+            color: #fff;
+        }
+
+        td {
+            background-color: #ffb6c1;
+        }
+
+        .tabcontent {
+            color: #454545;
+            padding: 20px;
+        }
+
+        .btn-primary {
+            background-color: #ff6b81;
+            border-color: #ff6b81;
+        }
+
+            .btn-primary:hover {
+                background-color: #ff4757;
+                border-color: #ff4757;
+            }
+
+        .form-control {
+            background-color: #ffb6c1;
+            color: #454545;
+        }
+
+        h1 {
+            color: #ff6b81;
+        }
+
+        form {
+            margin-top: 20px;
+            width: 80%; /* Adjusted width */
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+                <body>
+
+                    <a href="vinil_generic"><button class="tablink">Vinil_generic</button></a>
+                    <a href="vinil_fizic"><button class="tablink">Vinil_fizic</button></a>
+                    <a href="promotie"><button class="tablink" style="background: #ff4757; color: white">Promotie</button></a>
+                    <a href="pozitionare"><button class="tablink">Pozitionare</button></a>
+                    <a href="incasari"><button class="tablink">Incasari</button></a>
+                    <a href="furnizor"><button class="tablink">Furnizor</button></a>
+                    <div id="Consilieri" class="tabcontent">
+                        <center>
+                            <br>
+                            <h1 id="h3">Promotie</h1>
+                            <br>
+                            <table style="width:70%">
+                                <br>
+                                <br>
+                                <tr>
+                                    <th><i><b>ID Promotie</b></i> </th>
+                                    <th><i><b>Data inceput</b></i></th>
+                                    <th><i><b>Data sfarsit</b></i></th>
+                                    <th><i><b>Procent(%)</b></i></th>
+                                    <th><i><b>Action</b></i></th>
+
+                                </tr>
+                                {% for promotie in promotie %}
+                                <tr>
+                                    <td>{{promotie["id_promotie"]}}</td>
+                                    <td>{{promotie["data_inc"]}}</td>
+                                    <td>{{promotie["data_sf"]}}</td>
+                                    <td>{{promotie["procent"]}}</td>
+                                    <td>
+                                        <form class="was-validated" method="POST" action="/delPromotie">
+                                            <button type="submit" name="id_promotie" value="{{promotie[id_promotie]}}" class="btn btn-primary">Sterge</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </center>
+
+                        <div id="Promotie" class="tabcontent">
+                            <center>
+                                <h1>Adauga Promotie</h1>
+                                <form class="was-validated" method="POST" action="/addPromotie">
+                                    <div class="form-row">
+                                        <!-- <div class="col-md-6 mb-3">
+                            <label for="validationServer01">ID promotie</label>
+                             <input name="id_promotie" type="text" class="form-control is-valid" id="validationServer01">
+                        </div>-->
+                                        <div class="col-md-4 mb-3">
+                                            <label for="validationServer01">Data Inceput</label>
+                                            <input name="data_inc" type="date" class="form-control is-valid" id="validationServer01" required="">
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="validationServer02">Data Sfarsit</label>
+                                            <input name="data_sf" type="date" class="form-control is-valid" id="validationServer02" required="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col-md-4 mb-3">
+                                            <label for="validationServer03">Procent</label>
+                                            <input name="procent" type="number" class="form-control is-valid" id="validationServer03" placeholder="ex. 10" required="">
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-primary" type="submit">Adauga Promotie</button>
+                                </form>
+                            </center>
+                        </div>
+                    </div>
+
+
+                </body></html>
